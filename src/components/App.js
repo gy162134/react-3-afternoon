@@ -18,6 +18,7 @@ class App extends Component {
     this.updatePost = this.updatePost.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.filterPosts = this.filterPosts.bind(this);
   }
 
   componentDidMount() {
@@ -44,10 +45,14 @@ class App extends Component {
       .post(`HTTPS://practiceapi.devmountain.com/api/posts`, { text })
       .then(res => this.setState({ posts: res.data }));
   }
+  filterPosts(text) {
+    axios
+      .get("HTTPS://practiceapi.devmountain.com/api/posts")
+      .then(res => console.log(res.data));
+  }
 
   render() {
     const { posts } = this.state;
-    console.log(this.state.posts);
     return (
       <div className="App__parent">
         <Header />
